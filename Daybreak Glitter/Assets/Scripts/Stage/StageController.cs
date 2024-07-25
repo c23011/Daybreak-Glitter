@@ -57,6 +57,7 @@ public class StageController : MonoBehaviour
                     {
                         Debug.Log("目標生成OK");
                         stageStatus[z, x] = Random.Range(0, 4);
+                        shufleNum++;
                     }
 
                     //目標地点を強制生成
