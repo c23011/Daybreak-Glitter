@@ -123,6 +123,58 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &70890085
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 70890087}
+  - component: {fileID: 70890086}
+  m_Layer: 0
+  m_Name: StageController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &70890086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 70890085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 497c989a6021c6d429d5a6b4728b7010, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StageObjects:
+  - {fileID: 6282078433426274140, guid: abf6cba9e05fd284fb369fb1fc594064, type: 3}
+  - {fileID: 7465221355403288201, guid: d33d65ab584b5b64ab192b0595a780bb, type: 3}
+  - {fileID: 6690268838936254869, guid: 44c86f47e30471244806d010f266cb46, type: 3}
+  - {fileID: 5563002255571916058, guid: e0985a90407b22d498bdfd82fc47aae4, type: 3}
+  stageDistance: 2
+  maxAreaCount: 10
+  nowAreaCount: 0
+--- !u!4 &70890087
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 70890085}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &85557233
 GameObject:
   m_ObjectHideFlags: 0
@@ -843,3 +895,4 @@ SceneRoots:
   - {fileID: 954713197}
   - {fileID: 85571834}
   - {fileID: 304623362}
+  - {fileID: 70890087}
