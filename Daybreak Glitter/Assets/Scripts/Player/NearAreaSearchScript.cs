@@ -7,6 +7,7 @@ public class NearAreaSearchScript : MonoBehaviour
     public SphereCollider thisCol;
     public GameObject AreaObj;
     public AreaTest areaTestSC;
+    public GameObject CursolObj;
     public bool SearchSW;
     public bool CheckSW;
 
@@ -29,16 +30,16 @@ public class NearAreaSearchScript : MonoBehaviour
             //Debug.Log(areaTestSC.ClearSW);
             if (areaTestSC.ClearSW == false)
             {
-                //Debug.Log("NoClearArea");
                 this.transform.LookAt(AreaObj.transform.position);
+                //CursolObj.SetActive(true);
                 thisCol.radius = 0.1f;
                 SearchSW = false;
             }
 
             if (areaTestSC.ClearSW == true)
             {
-                //Debug.Log("AlreadyClearArea");
                 SearchSW = true;
+                //CursolObj.SetActive(false);
             }
         }
     }
@@ -48,9 +49,7 @@ public class NearAreaSearchScript : MonoBehaviour
         if (other.gameObject.tag == "Area")
         {
             AreaObj = other.gameObject;
-            Debug.Log("Hit!!");
             CheckSW = true;
-
         }
     }
 }

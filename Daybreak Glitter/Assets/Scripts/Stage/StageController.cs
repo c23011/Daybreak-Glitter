@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class StageController : MonoBehaviour
 {
+    //ステージで使うの変数
     public GameObject[] StageObjects;
     public int stageDistance;
     GameObject NowInstStage;
@@ -12,6 +13,8 @@ public class StageController : MonoBehaviour
     public int maxPointDistance;
     public int maxAreaCount;
     public int nowAreaCount;
+
+
 
     int[,] stageStatus = new int[10, 10] {//[y,x] //0→目標地点・1→地面・2→未定・3→未定・4→未定...
         {0,0,0,0,0,0,0,0,0,0},
@@ -47,7 +50,6 @@ public class StageController : MonoBehaviour
                     //目標地点を生成させない
                     if (shufleNum < pointDistance)
                     {
-                        Debug.Log("目標生成NG");
                         stageStatus[z, x] = Random.Range(1,4);
                         shufleNum++;
                     }
@@ -55,7 +57,6 @@ public class StageController : MonoBehaviour
                     //目標地点を生成するのを許可
                     if (shufleNum >= pointDistance && shufleNum < maxPointDistance)
                     {
-                        Debug.Log("目標生成OK");
                         stageStatus[z, x] = Random.Range(0, 4);
                         shufleNum++;
                     }
@@ -69,7 +70,6 @@ public class StageController : MonoBehaviour
                     //生成するStageが目標地点(0)の場合カウント+1、目標地点の生成許可カウントをリセット
                     if (stageStatus[z, x] == 0)
                     {
-                        Debug.Log("目標生成されたで");
                         nowAreaCount++;
                         shufleNum = 0;
                     }
@@ -83,7 +83,6 @@ public class StageController : MonoBehaviour
                 //目標地点の生成数が上限に来ていた場合
                 if (nowAreaCount > maxAreaCount)
                 {
-                    Debug.Log("もう目標生成されないで");
                     stageStatus[z, x] = Random.Range(1,4);
 
                     NowInstStage = Instantiate(StageObjects[stageStatus[z, x]],

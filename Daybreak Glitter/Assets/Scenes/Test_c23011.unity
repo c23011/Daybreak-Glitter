@@ -158,6 +158,8 @@ MonoBehaviour:
   - {fileID: 6690268838936254869, guid: 44c86f47e30471244806d010f266cb46, type: 3}
   - {fileID: 5563002255571916058, guid: e0985a90407b22d498bdfd82fc47aae4, type: 3}
   stageDistance: 2
+  pointDistance: 4
+  maxPointDistance: 7
   maxAreaCount: 10
   nowAreaCount: 0
 --- !u!4 &70890087
@@ -245,6 +247,7 @@ MonoBehaviour:
   thisCol: {fileID: 0}
   AreaObj: {fileID: 0}
   areaTestSC: {fileID: 0}
+  CursolObj: {fileID: 560961614}
   SearchSW: 0
   CheckSW: 0
 --- !u!1 &85571832
