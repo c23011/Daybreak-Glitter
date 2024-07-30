@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StageController : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class StageController : MonoBehaviour
     public int maxPointDistance;
     public int maxAreaCount;
     public int nowAreaCount;
+    float randomRot;
 
 
 
@@ -35,7 +37,10 @@ public class StageController : MonoBehaviour
 
     void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            SceneManager.LoadScene("Test_c23011");
+        }
     }
 
     void StageDraw()
@@ -74,9 +79,10 @@ public class StageController : MonoBehaviour
                         shufleNum = 0;
                     }
 
+                    randomRot = Random.Range(0,4) * 90;
                     NowInstStage = Instantiate(StageObjects[stageStatus[z, x]],
                                                new Vector3((x * stageDistance), 0.0f, (z * stageDistance)),
-                                               Quaternion.identity
+                                               Quaternion.Euler(0, randomRot, 0)
                                                );
                 }
 
@@ -87,7 +93,7 @@ public class StageController : MonoBehaviour
 
                     NowInstStage = Instantiate(StageObjects[stageStatus[z, x]],
                            new Vector3((x * stageDistance), 0.0f, (z * stageDistance)),
-                           Quaternion.identity
+                           Quaternion.Euler(0,randomRot,0)
                            );
                 }
 
