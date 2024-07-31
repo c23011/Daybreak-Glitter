@@ -5,12 +5,14 @@ using UnityEngine;
 public class AreaEnemyScript : MonoBehaviour
 {
     int HP;
+    int areaCount;
     AreaTest areaTestSC;
     bool AreaCountSW;
 
     void Start()
     {
         HP = 1;
+        areaCount = 1;
     }
 
     void Update()
@@ -38,8 +40,18 @@ public class AreaEnemyScript : MonoBehaviour
         if (other.gameObject.tag == "Area")
         {
             areaTestSC = other.gameObject.GetComponent<AreaTest>();
-            areaTestSC.EnemyNum += 1;
+            areaTestSC.EnemyNum += areaCount;
+            areaCount = 0;
+            Debug.Log(areaTestSC.EnemyNum);
             AreaCountSW = true;
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Area")
+        {
+            areaCount = 1;
         }
     }
 }
