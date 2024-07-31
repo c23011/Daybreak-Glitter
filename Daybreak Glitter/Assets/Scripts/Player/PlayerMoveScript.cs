@@ -42,6 +42,11 @@ public class PlayerMoveScript : MonoBehaviour
             PlayerRB.velocity = new Vector3(playerMoveX*10, 0.0f, playerMoveZ*10);
             Invoke("falseSW",dashTime);
         }
+
+        if (PlayerRB.velocity.z < 1.0f)
+        {
+            MoveSW = true;
+        }
     }
 
     void falseSW()

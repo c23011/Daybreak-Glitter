@@ -27,11 +27,9 @@ public class NearAreaSearchScript : MonoBehaviour
         if (CheckSW == true)
         {
             areaTestSC = AreaObj.GetComponent<AreaTest>();
-            //Debug.Log(areaTestSC.ClearSW);
             if (areaTestSC.ClearSW == false)
             {
                 this.transform.LookAt(AreaObj.transform.position);
-                //CursolObj.SetActive(true);
                 thisCol.radius = 0.1f;
                 SearchSW = false;
             }
@@ -39,7 +37,6 @@ public class NearAreaSearchScript : MonoBehaviour
             if (areaTestSC.ClearSW == true)
             {
                 SearchSW = true;
-                //CursolObj.SetActive(false);
             }
         }
     }

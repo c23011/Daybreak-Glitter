@@ -7,12 +7,17 @@ public class StageController : MonoBehaviour
 {
     //ステージで使うの変数
     public GameObject[] StageObjects;
+    [Header("ステージ間の距離")]
     public int stageDistance;
     GameObject NowInstStage;
     float shufleNum;
+    [Header("目標地点生成可能にする値")]
     public int pointDistance;
+    [Header("目標地点強制生成値")] 
     public int maxPointDistance;
+    [Header("目標地点最大値")]
     public int maxAreaCount;
+    [Header("目標地点の個数")]
     public int nowAreaCount;
     float randomRot;
 
@@ -49,7 +54,7 @@ public class StageController : MonoBehaviour
         {
             for (int x = 1; x <= 8; x++)
             {
-                //目標地点の生成数が上限値未満の場合
+                //目標地点の生成数が上限値以下の場合
                 if (nowAreaCount <= maxAreaCount)
                 {
                     //目標地点を生成させない
