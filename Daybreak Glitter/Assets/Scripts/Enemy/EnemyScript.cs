@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class EnemyScript : MonoBehaviour
 {
+    public GameObject AttackObj;
     public EnemySearchScript enemySearchScript;
     public float enemyMoveSpeed;
+    public float attackDistance;
     GameObject PlayerObj;
     Rigidbody EnemyRb;
 
@@ -22,9 +24,14 @@ public class EnemyScript : MonoBehaviour
         {
             PlayerObj = enemySearchScript.PlayerObj;
             DistancePos = PlayerObj.transform.position - this.transform.position;
+
+            if (DistancePos.x <= Mathf.Abs(attackDistance) && DistancePos.z <= Mathf.Abs(attackDistance))
+            {
+                AttackObj.SetActive(true);
+            }
+
             DistancePos *= enemyMoveSpeed;
             DistancePosCalculation();
-            Debug.Log(DistancePos);
             EnemyRb.velocity = DistancePos;
         }
     }
@@ -52,5 +59,10 @@ public class EnemyScript : MonoBehaviour
         {
             DistancePos.z = -1.0f * enemyMoveSpeed;
         }
+    }
+
+    void AttackEnd()
+    {
+        AttackObj.SetActive(false);
     }
 }

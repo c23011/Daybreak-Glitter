@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PlayerMoveScript : MonoBehaviour
 {
+    public float maxPlayerHP;
+    public float nowPlayerHP;
     public Rigidbody PlayerRB;
     public float playerMoveSpeed;
     float playerMoveX;
@@ -25,6 +27,7 @@ public class PlayerMoveScript : MonoBehaviour
     {
         MoveSW = true;
         nowReflectTime = maxReflectTime;
+        nowPlayerHP = maxPlayerHP;
     }
 
     void Update()
