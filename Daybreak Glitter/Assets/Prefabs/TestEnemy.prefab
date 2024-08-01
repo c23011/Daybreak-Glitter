@@ -316,3 +316,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemySearchScript: {fileID: 5936379873652353711}
+  enemyMoveSpeed: 3

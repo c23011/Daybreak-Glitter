@@ -10,14 +10,21 @@ public class PlayerMoveScript : MonoBehaviour
     float playerMoveX;
     float playerMoveZ;
     Vector3 lastVelocity;
-    bool ReflectSW;
+    public float maxReflectTime;
+    float nowReflectTime;
 
-    public float dashTime;
+    public float maxDashTime;
+    float nowDashTime;
     public bool MoveSW;
     public bool DashSW;
+    public bool ReflectSW;
+
+    GameObject WallObj;
+
     void Start()
     {
         MoveSW = true;
+        nowReflectTime = maxReflectTime;
     }
 
     void Update()
@@ -26,33 +33,11 @@ public class PlayerMoveScript : MonoBehaviour
         {
             playerMoveX = Input.GetAxisRaw("Horizontal") * playerMoveSpeed;
             playerMoveZ = Input.GetAxisRaw("Vertical") * playerMoveSpeed;
-
-            PlayerRB.velocity = new Vector3(playerMoveX, 0.0f, playerMoveZ);
-
-            if (Input.GetKeyDown(KeyCode.LeftShift))
-            {
-                DashSW = true;
-                MoveSW = false;
-                Debug.Log("Dash!");
-            }
+            PlayerRB.velocity = new Vector3(playerMoveX, PlayerRB.velocity.y, playerMoveZ);
         }
 
-        if (DashSW == true)
-        {
-            PlayerRB.velocity = new Vector3(playerMoveX*10, 0.0f, playerMoveZ*10);
-            Invoke("falseSW",dashTime);
-        }
-
-        if (PlayerRB.velocity.z < 1.0f)
-        {
-            MoveSW = true;
-        }
-    }
-
-    void falseSW()
-    {
-        DashSW = false;
-        MoveSW = true;
+        Dash();
+        Reflect();
     }
 
     void FixedUpdate()
@@ -64,16 +49,61 @@ public class PlayerMoveScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "wall")
         {
+            DashSW = false;
             ReflectSW = true;
+            Vector3 refrectVec = Vector3.Reflect(this.lastVelocity, collision.contacts[0].normal);//反射ベクトル計算
+            nowReflectTime = maxReflectTime;
+            PlayerRB.velocity = refrectVec;
+        }
+    }
+
+    void Dash()
+    {
+        if (DashSW == false && Input.GetKeyDown(KeyCode.Space))
+        {
+            DashSW = true;
+            MoveSW = false;
+            Debug.Log("Dash!");
         }
 
+        if (DashSW == true && ReflectSW == false)
+        {
+            PlayerRB.velocity = new Vector3(playerMoveX * 10, PlayerRB.velocity.y, playerMoveZ * 10);
+                
+            if (nowDashTime > 0)
+            {
+                nowDashTime -= Time.deltaTime;
+                if (nowDashTime <= 0)
+                {
+                    DashSW = false;
+                }
+            }
+        }
+
+        if (DashSW == false && ReflectSW == false)
+        {
+            nowDashTime = maxDashTime;
+            MoveSW = true;
+        }
+    }
+
+    void Reflect()
+    {
         if (ReflectSW == true)
         {
-            Vector3 refrectVec = Vector3.Reflect(this.lastVelocity, collision.contacts[0].normal);//反射ベクトル計算
-            PlayerRB.velocity = refrectVec;
-            Debug.Log(refrectVec);
-        }
+            DashSW = false;
 
-        DashSW = false;
+            if (nowReflectTime > 0)
+            {
+                nowReflectTime -= Time.deltaTime;
+                Debug.Log(nowReflectTime);
+                if (nowReflectTime <= 0)
+                {
+                    Debug.Log("bhefsdi");
+                    ReflectSW = false;
+                    nowReflectTime = maxReflectTime;
+                }
+            }
+        }
     }
 }
