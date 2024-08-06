@@ -42,7 +42,6 @@ public class AreaEnemyScript : MonoBehaviour
             areaTestSC = other.gameObject.GetComponent<AreaTest>();
             areaTestSC.EnemyNum += areaCount;
             areaCount = 0;
-            Debug.Log(areaTestSC.EnemyNum);
             AreaCountSW = true;
         }
     }

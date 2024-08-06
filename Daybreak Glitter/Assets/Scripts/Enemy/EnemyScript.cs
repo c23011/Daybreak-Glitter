@@ -8,6 +8,10 @@ public class EnemyScript : MonoBehaviour
     public EnemySearchScript enemySearchScript;
     public float enemyMoveSpeed;
     public float attackDistance;
+    public float attackEndTime;
+    public float countTimer;
+    public bool MoveSW;
+    public bool AttackSW;
     GameObject PlayerObj;
     Rigidbody EnemyRb;
 
@@ -20,14 +24,22 @@ public class EnemyScript : MonoBehaviour
 
     void Update()
     {
-        if (enemySearchScript.SearchSW == true)
+        MoveSWChange();
+
+        if (MoveSW == true)
         {
             PlayerObj = enemySearchScript.PlayerObj;
             DistancePos = PlayerObj.transform.position - this.transform.position;
 
-            if (DistancePos.x <= Mathf.Abs(attackDistance) && DistancePos.z <= Mathf.Abs(attackDistance))
+            EnemyRb.constraints = RigidbodyConstraints.None;
+            EnemyRb.constraints = RigidbodyConstraints.FreezeRotationX;
+            EnemyRb.constraints = RigidbodyConstraints.FreezeRotationZ;
+
+            if (Mathf.Abs(DistancePos.x) <= attackDistance && Mathf.Abs(DistancePos.z) <= attackDistance)
             {
-                AttackObj.SetActive(true);
+                AttackSW = true;
+                MoveSW = false;
+                Attack();
             }
 
             DistancePos *= enemyMoveSpeed;
@@ -63,6 +75,40 @@ public class EnemyScript : MonoBehaviour
 
     void AttackEnd()
     {
+        AttackSW = false;
+        countTimer = 0.0f;
         AttackObj.SetActive(false);
+        MoveSW = true;
+    }
+
+    void Attack()
+    {
+        if (AttackSW == true)
+        {
+            EnemyRb.constraints = RigidbodyConstraints.FreezeAll;
+            AttackObj.SetActive(true);
+        }
+
+        if (countTimer < attackEndTime)
+        {
+            countTimer += Time.deltaTime;
+        }
+        else
+        {
+            AttackEnd();
+        }
+    }
+
+    void MoveSWChange()
+    {
+        if (enemySearchScript.SearchSW == true)
+        {
+            MoveSW = true;
+        }
+
+        if (enemySearchScript.SearchSW == false)
+        {
+            MoveSW = false;
+        }
     }
 }

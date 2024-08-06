@@ -36,10 +36,8 @@ public class EnemySearchScript : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            PlayerObj = null;
             SearchSW = false;
             Debug.Log("ƒvƒŒƒCƒ„[‚¨‚ç‚ñ‚È‚Á‚Ä‚à‚¤‚½");
-
         }
     }
 }

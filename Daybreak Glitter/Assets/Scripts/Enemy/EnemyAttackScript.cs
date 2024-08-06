@@ -5,7 +5,8 @@ using UnityEngine;
 public class EnemyAttackScript : MonoBehaviour
 {
     public float attackDamage;
-    PlayerMoveScript PlayerMoveSC; 
+    PlayerMoveScript PlayerMoveSC;
+    bool DamageSW;
     void Start()
     {
         
@@ -21,9 +22,11 @@ public class EnemyAttackScript : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             PlayerMoveSC = other.GetComponent<PlayerMoveScript>();
-            PlayerMoveSC.nowPlayerHP -= attackDamage;
-
-            Debug.Log(PlayerMoveSC.nowPlayerHP);
+            if (DamageSW == false)
+            {
+                PlayerMoveSC.nowPlayerHP -= attackDamage;
+                DamageSW = true;
+            }
         }
     }
 }
