@@ -20,6 +20,7 @@ public class StageController : MonoBehaviour
     [Header("目標地点の個数")]
     public int nowAreaCount;
     float randomRot;
+    bool CreateSW;
 
 
 
@@ -42,7 +43,7 @@ public class StageController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             SceneManager.LoadScene("Test_c23011");
         }
@@ -54,12 +55,28 @@ public class StageController : MonoBehaviour
         {
             for (int x = 1; x <= 8; x++)
             {
-                //目標地点の生成数が上限値以下の場合
-                if (nowAreaCount <= maxAreaCount)
+                //目標地点の生成数が上限に来ていた場合
+                if (nowAreaCount >= maxAreaCount)
                 {
+                    if (CreateSW == false)
+                    {
+                        stageStatus[z, x] = Random.Range(1, 4);
+
+                        NowInstStage = Instantiate(StageObjects[stageStatus[z, x]],
+                                       new Vector3((x * stageDistance), 0.0f, (z * stageDistance)),
+                                       Quaternion.Euler(0, randomRot, 0)
+                                       );
+                    }
+                }
+
+                //目標地点の生成数が上限値以下の場合
+                if (nowAreaCount < maxAreaCount)
+                {
+                    CreateSW = true;
                     //目標地点を生成させない
                     if (shufleNum < pointDistance)
                     {
+                        CreateSW = false;
                         stageStatus[z, x] = Random.Range(1,4);
                         shufleNum++;
                     }
@@ -67,6 +84,7 @@ public class StageController : MonoBehaviour
                     //目標地点を生成するのを許可
                     if (shufleNum >= pointDistance && shufleNum < maxPointDistance)
                     {
+                        CreateSW = false;
                         stageStatus[z, x] = Random.Range(0, 4);
                         shufleNum++;
                     }
@@ -84,24 +102,17 @@ public class StageController : MonoBehaviour
                         shufleNum = 0;
                     }
 
+                    if (nowAreaCount >= maxAreaCount)
+                    {
+                        nowAreaCount = maxAreaCount;
+                    }
+
                     randomRot = Random.Range(0,4) * 90;
                     NowInstStage = Instantiate(StageObjects[stageStatus[z, x]],
                                                new Vector3((x * stageDistance), 0.0f, (z * stageDistance)),
                                                Quaternion.Euler(0, randomRot, 0)
                                                );
                 }
-
-                //目標地点の生成数が上限に来ていた場合
-                if (nowAreaCount > maxAreaCount)
-                {
-                    stageStatus[z, x] = Random.Range(1,4);
-
-                    NowInstStage = Instantiate(StageObjects[stageStatus[z, x]],
-                           new Vector3((x * stageDistance), 0.0f, (z * stageDistance)),
-                           Quaternion.Euler(0,randomRot,0)
-                           );
-                }
-
                 NowInstStage.transform.parent = this.transform;
             }
         }
