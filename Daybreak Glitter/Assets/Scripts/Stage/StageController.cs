@@ -9,6 +9,7 @@ public class StageController : MonoBehaviour
     public GameObject[] StageObjects;
     [Header("ステージ間の距離")]
     public int stageDistance;
+    //生成時のステージオブジェクト
     GameObject NowInstStage;
     float shufleNum;
     [Header("目標地点生成可能にする値")]
@@ -19,9 +20,11 @@ public class StageController : MonoBehaviour
     public int maxAreaCount;
     [Header("目標地点の個数")]
     public int nowAreaCount;
+    [Header("変数管理用Prefab")]
+    public GameObject MasterControl;
+
     float randomRot;
     bool CreateSW;
-
 
 
     int[,] stageStatus = new int[10, 10] {//[y,x] //0→目標地点・1→地面・2→未定・3→未定・4→未定...
