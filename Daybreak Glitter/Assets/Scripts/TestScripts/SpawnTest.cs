@@ -15,7 +15,9 @@ public class SpawnTest : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Instantiate(TestEnemy,
-                        this.transform.position,
+                        new Vector3(TestEnemy.transform.position.x,
+                                    3.0f,
+                                    TestEnemy.transform.position.z),
                         Quaternion.identity);
         }
     }

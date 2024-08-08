@@ -37,9 +37,10 @@ public class AreaEnemyScript : MonoBehaviour
     {
         if (other.gameObject.tag == "Area")
         {
-            areaTestSC = other.gameObject.GetComponent<AreaTest>();
+            areaTestSC = other.GetComponent<AreaTest>();
             areaTestSC.EnemyNum += 1;
             AreaCountSW = true;
+            Debug.Log("In");
         }
     }
 }
