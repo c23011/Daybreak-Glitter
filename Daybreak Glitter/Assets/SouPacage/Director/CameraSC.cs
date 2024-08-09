@@ -2,11 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MasterControllerScript : MonoBehaviour
+public class CameraSC : MonoBehaviour
 {
-    [Header("•Ï”ŠÇ——pPrefab")]
-    [Header("“G‚ÌŒ‚”j”")]
-    public float destroyEnemys;
+    GameObject CamPos;
 
     void Start()
     {

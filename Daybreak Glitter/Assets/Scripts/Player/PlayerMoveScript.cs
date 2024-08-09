@@ -66,7 +66,6 @@ public class PlayerMoveScript : MonoBehaviour
         {
             DashSW = true;
             MoveSW = false;
-            Debug.Log("Dash!");
         }
 
         if (DashSW == true && ReflectSW == false)
@@ -102,7 +101,7 @@ public class PlayerMoveScript : MonoBehaviour
                 Debug.Log(nowReflectTime);
                 if (nowReflectTime <= 0)
                 {
-                    Debug.Log("bhefsdi");
+                    MoveSW = true;
                     ReflectSW = false;
                     nowReflectTime = maxReflectTime;
                 }
