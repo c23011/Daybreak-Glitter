@@ -6,7 +6,7 @@ public class AreaEnemyScript : MonoBehaviour
 {
     int HP;
     int areaCount;
-    AreaTest areaTestSC;
+    public AreaTest areaTestSC;
     bool AreaCountSW;
 
     void Start()

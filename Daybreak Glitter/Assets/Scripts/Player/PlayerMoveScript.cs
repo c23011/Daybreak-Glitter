@@ -33,6 +33,8 @@ public class PlayerMoveScript : MonoBehaviour
     {
         if (MoveSW == true)
         {
+            Debug.Log(PlayerRB.velocity);
+
             if (Input.GetKey(KeyCode.W))
             {
                 PlayerRB.velocity = transform.forward * playerMoveSpeed;

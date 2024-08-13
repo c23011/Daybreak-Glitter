@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class AreaTest : MonoBehaviour
 {
-    public GameObject[] Enemys;
     public int EnemyNum;
     public bool ClearSW;
     public int clearReleaseEnemyCount;
     void Start()
     {
-        EnemyNum = 0;
         ClearSW = false;
     }
 

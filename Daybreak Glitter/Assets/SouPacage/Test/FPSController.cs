@@ -36,31 +36,29 @@ public class FPSController : MonoBehaviour
         characterRot *= Quaternion.Euler(0, xRot, 0);
 
         //UpdateÇÃíÜÇ≈çÏê¨ÇµÇΩä÷êîÇåƒÇ‘
-        cameraRot = ClampRotation(cameraRot);
-
-        cameraRot.x = cam.transform.rotation.x;
+        //cameraRot = ClampRotation(cameraRot);
         cam.transform.localRotation = cameraRot;
         transform.localRotation = characterRot;
 
 
         //UpdateCursorLock();
 
-        if (Input.GetKey(KeyCode.W))
-        {
-            PlayerRB.AddForce(transform.forward * PlayerSP);
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            PlayerRB.AddForce(-transform.forward * PlayerSP);
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            PlayerRB.AddForce(transform.right * PlayerSP);
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            PlayerRB.AddForce(-transform.right * PlayerSP);
-        }
+        //if (Input.GetKey(KeyCode.W))
+        //{
+        //    PlayerRB.AddForce(transform.forward * PlayerSP);
+        //}
+        //if (Input.GetKey(KeyCode.S))
+        //{
+        //    PlayerRB.AddForce(-transform.forward * PlayerSP);
+        //}
+        //if (Input.GetKey(KeyCode.D))
+        //{
+        //    PlayerRB.AddForce(transform.right * PlayerSP);
+        //}
+        //if (Input.GetKey(KeyCode.A))
+        //{
+        //    PlayerRB.AddForce(-transform.right * PlayerSP);
+        //}
     }
 
     void FixedUpdate()
