@@ -9,8 +9,7 @@ public class PlayerMoveScript : MonoBehaviour
     public float nowPlayerHP;
     public Rigidbody PlayerRB;
     public float playerMoveSpeed;
-    float playerMoveX;
-    float playerMoveZ;
+    public float playerDashSpeed;
     Vector3 lastVelocity;
     public float maxReflectTime;
     float nowReflectTime;
@@ -34,9 +33,22 @@ public class PlayerMoveScript : MonoBehaviour
     {
         if (MoveSW == true)
         {
-            playerMoveX = Input.GetAxisRaw("Horizontal") * playerMoveSpeed;
-            playerMoveZ = Input.GetAxisRaw("Vertical") * playerMoveSpeed;
-            PlayerRB.velocity = new Vector3(playerMoveX, PlayerRB.velocity.y, playerMoveZ);
+            if (Input.GetKey(KeyCode.W))
+            {
+                PlayerRB.velocity = transform.forward * playerMoveSpeed;
+            }
+            if (Input.GetKey(KeyCode.S))
+            {
+                PlayerRB.velocity = -transform.forward * playerMoveSpeed;
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                PlayerRB.velocity = transform.right * playerMoveSpeed;
+            }
+            if (Input.GetKey(KeyCode.A))
+            {
+                PlayerRB.velocity = -transform.right * playerMoveSpeed;
+            }
         }
 
         Dash();
@@ -70,8 +82,8 @@ public class PlayerMoveScript : MonoBehaviour
 
         if (DashSW == true && ReflectSW == false)
         {
-            PlayerRB.velocity = new Vector3(playerMoveX * 10, PlayerRB.velocity.y, playerMoveZ * 10);
-                
+            PlayerRB.velocity = transform.forward * playerDashSpeed;
+
             if (nowDashTime > 0)
             {
                 nowDashTime -= Time.deltaTime;
@@ -98,7 +110,6 @@ public class PlayerMoveScript : MonoBehaviour
             if (nowReflectTime > 0)
             {
                 nowReflectTime -= Time.deltaTime;
-                Debug.Log(nowReflectTime);
                 if (nowReflectTime <= 0)
                 {
                     MoveSW = true;

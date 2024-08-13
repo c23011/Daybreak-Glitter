@@ -38,11 +38,12 @@ public class FPSController : MonoBehaviour
         //UpdateÇÃíÜÇ≈çÏê¨ÇµÇΩä÷êîÇåƒÇ‘
         cameraRot = ClampRotation(cameraRot);
 
+        cameraRot.x = cam.transform.rotation.x;
         cam.transform.localRotation = cameraRot;
         transform.localRotation = characterRot;
 
 
-        UpdateCursorLock();
+        //UpdateCursorLock();
 
         if (Input.GetKey(KeyCode.W))
         {
@@ -60,10 +61,6 @@ public class FPSController : MonoBehaviour
         {
             PlayerRB.AddForce(-transform.right * PlayerSP);
         }
-
-
-
-
     }
 
     void FixedUpdate()

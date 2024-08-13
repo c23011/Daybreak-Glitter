@@ -5,25 +5,27 @@ using UnityEngine.SceneManagement;
 
 public class StageController : MonoBehaviour
 {
-    //ステージで使うの変数
-    public GameObject[] StageObjects;
-    [Header("ステージ間の距離")]
-    public int stageDistance;
-    //生成時のステージオブジェクト
-    GameObject NowInstStage;
-    float shufleNum;
-    [Header("目標地点生成可能にする値")]
-    public int pointDistance;
-    [Header("目標地点強制生成値")] 
-    public int maxPointDistance;
-    [Header("目標地点最大値")]
-    public int maxAreaCount;
-    [Header("目標地点の個数")]
-    public int nowAreaCount;
-    [Header("変数管理用Prefab")]
-    public GameObject MasterControl;
+    [Header("生成するステージのPrefab")] public GameObject[] StageObjects;
+    
+    GameObject NowInstStage;//生成時のステージオブジェクト
 
-    float randomRot;
+    [Header("ステージ間の距離")] public int stageDistance;
+
+    [Header("目標地点生成可能にする値")] public int pointDistance;
+
+    [Header("目標地点強制生成値")] public int maxPointDistance;
+
+    [Header("目標地点最大値")] public int maxAreaCount;
+
+    [Header("目標地点の個数")] public int nowAreaCount;
+
+    [Header("各目標地点を取得する")] public GameObject[] PointObjects;
+    
+    [Header("変数管理用Prefab")] public GameObject MasterControl;
+    ClearFlagScript ClearFlagSC;
+
+    float shufleNum;//ステージのランダム生成を許可する際に使う変数
+    float randomRot;//生成ステージのランダム回転用変数
     bool CreateSW;
 
 
@@ -115,6 +117,18 @@ public class StageController : MonoBehaviour
                                                new Vector3((x * stageDistance), 0.0f, (z * stageDistance)),
                                                Quaternion.Euler(0, randomRot, 0)
                                                );
+
+                    //目標地点生成時に配列に格納
+                    if (StageObjects[stageStatus[z, x]] == StageObjects[0])
+                    {
+                        PointObjects[nowAreaCount - 1] = NowInstStage;
+                        
+                        //各目標地点の制圧判定スクリプトを取得
+                        ClearFlagSC = PointObjects[nowAreaCount - 1].GetComponent<ClearFlagScript>();
+
+                        //MasterPrefabに各目標地点のSwitchを格納
+                        ClearFlagSC.clearCount = nowAreaCount - 1;
+                    }
                 }
                 NowInstStage.transform.parent = this.transform;
             }
