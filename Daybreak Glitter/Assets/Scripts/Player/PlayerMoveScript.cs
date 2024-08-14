@@ -85,12 +85,13 @@ public class PlayerMoveScript : MonoBehaviour
         if (DashSW == true && ReflectSW == false)
         {
             PlayerRB.velocity = transform.forward * playerDashSpeed;
-
+            PlayerRB.constraints = RigidbodyConstraints.FreezeRotationY;
             if (nowDashTime > 0)
             {
                 nowDashTime -= Time.deltaTime;
                 if (nowDashTime <= 0)
                 {
+                    PlayerRB = null;
                     DashSW = false;
                 }
             }
