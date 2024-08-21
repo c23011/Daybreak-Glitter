@@ -8,6 +8,7 @@ public class AreaEnemyScript : MonoBehaviour
     int areaCount;
     public AreaTest areaTestSC;
     bool AreaCountSW;
+    public int AreaIn;//0Å®ñ¢êNì¸ 1Å®êNì¸ 2Å®êNì¸åvéZçœ
 
     void Start()
     {
@@ -25,6 +26,14 @@ public class AreaEnemyScript : MonoBehaviour
             }
             Destroy(gameObject);
         }
+
+        if (AreaIn == 1)
+        {
+            areaTestSC.EnemyNum += areaCount;
+            areaCount = 0;
+            AreaCountSW = true;
+            AreaIn = 2;
+        }
     }
 
     void OnCollisionEnter(Collision other)
@@ -35,14 +44,16 @@ public class AreaEnemyScript : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "Area")
         {
             areaTestSC = other.gameObject.GetComponent<AreaTest>();
-            areaTestSC.EnemyNum += areaCount;
-            areaCount = 0;
-            AreaCountSW = true;
+
+            if (AreaIn == 0)
+            {
+                AreaIn = 1;
+            }
         }
     }
 
@@ -51,6 +62,7 @@ public class AreaEnemyScript : MonoBehaviour
         if (other.gameObject.tag == "Area")
         {
             areaCount = 1;
+            AreaIn = 0;
         }
     }
 }

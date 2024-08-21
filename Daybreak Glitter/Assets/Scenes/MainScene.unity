@@ -1149,12 +1149,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 717503495}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 90, y: 150, z: 90}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 12.54, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 6079496108901428309}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &868840517
 GameObject:
@@ -2315,6 +2315,7 @@ Transform:
   - {fileID: 92089844}
   - {fileID: 1054267992}
   - {fileID: 340777431}
+  - {fileID: 717503498}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6851493650900203247
@@ -2410,16 +2411,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4045c25b9e986d04abb4345c93477b79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerRB: {fileID: 7201658317335127025}
   maxPlayerHP: 0
   nowPlayerHP: 0
-  PlayerRB: {fileID: 7201658317335127025}
   playerMoveSpeed: 5
   playerDashSpeed: 20
-  maxReflectTime: 1
   maxDashTime: 1
   MoveSW: 0
   DashSW: 0
   ReflectSW: 0
+  maxReflectTime: 1
+  InstLightPrefab: {fileID: 2605880178071535652, guid: 41096985d13353242ad50e72b275c507, type: 3}
+  LightDirectionPos: {x: 0, y: 2, z: 0}
+  maxLightInstTime: 1
 --- !u!114 &7201658317335127028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2472,6 +2476,5 @@ SceneRoots:
   - {fileID: 1563978565}
   - {fileID: 556979646}
   - {fileID: 6079496108901428309}
-  - {fileID: 717503498}
   - {fileID: 109919725}
   - {fileID: 305810141}

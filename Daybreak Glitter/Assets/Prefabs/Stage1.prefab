@@ -922,7 +922,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6885496745919736290, guid: 4760742e68f22e34f9b8bd9a6407a0c4, type: 3}
       propertyPath: EnemyNum
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6885496745919736290, guid: 4760742e68f22e34f9b8bd9a6407a0c4, type: 3}
       propertyPath: Enemys.Array.size

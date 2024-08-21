@@ -108,6 +108,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LightIntensity: {fileID: 3781620278192016272}
-  Bllightness: 0.2
+  Bllightness: 0.02
   maxBllightness: 6
   minBllightness: 1

@@ -36,7 +36,7 @@ public class ResultScript_test : MonoBehaviour
     {
         for (int i = 0; i < MasterSC.maxPoints; i++)
         {
-            Debug.Log(MasterSC.ClearSwitches[i]);
+            //Debug.Log(MasterSC.ClearSwitches[i]);
             if (MasterSC.ClearSwitches[i] == true)
             {
                 clearCount++;

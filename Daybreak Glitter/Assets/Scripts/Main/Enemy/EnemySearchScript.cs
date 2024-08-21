@@ -28,7 +28,6 @@ public class EnemySearchScript : MonoBehaviour
             PlayerObj = other.gameObject;
 
             SearchSW = true;
-            Debug.Log("プレイヤーいたで");
         }
     }
 
@@ -37,7 +36,6 @@ public class EnemySearchScript : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             SearchSW = false;
-            Debug.Log("プレイヤーおらんなってもうた");
         }
     }
 }
