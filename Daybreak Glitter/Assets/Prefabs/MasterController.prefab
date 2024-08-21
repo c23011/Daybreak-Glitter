@@ -44,7 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eb515cfbf1f9d43bce7d8604763ad6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ClearSwitches: 01010101010101010101
+  ClearSwitches: 00000000000000000000
   maxPoints: 10
+  maxEnemys: 0
   destroyEnemys: 0
   clearTime: 0

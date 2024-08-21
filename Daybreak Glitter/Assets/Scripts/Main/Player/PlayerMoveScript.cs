@@ -1,18 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMoveScript : MonoBehaviour
-{
+{   
+    public Rigidbody PlayerRB;
     public float maxPlayerHP;
     public float nowPlayerHP;
-    public Rigidbody PlayerRB;
     public float playerMoveSpeed;
     public float playerDashSpeed;
-    Vector3 lastVelocity;
-    public float maxReflectTime;
-    float nowReflectTime;
 
     public float maxDashTime;
     float nowDashTime;
@@ -20,8 +18,16 @@ public class PlayerMoveScript : MonoBehaviour
     public bool DashSW;
     public bool ReflectSW;
 
-    GameObject WallObj;
+    Vector3 lastVelocity;
+    public float maxReflectTime;
+    float nowReflectTime;
 
+    public GameObject InstLightPrefab;
+    public Vector3 LightDirectionPos;
+    Transform LightInstPos;
+    GameObject NowInstLight;
+    float lightInstTimer;
+    public float maxLightInstTime;
     void Start()
     {
         MoveSW = true;
@@ -53,6 +59,17 @@ public class PlayerMoveScript : MonoBehaviour
 
         Dash();
         Reflect();
+
+        lightInstTimer += Time.deltaTime;
+        LightInstPos = this.transform;
+        if (lightInstTimer >= maxLightInstTime)
+        {
+            LightInstPos.transform.position += LightDirectionPos;
+            NowInstLight = Instantiate(InstLightPrefab,LightInstPos);
+            LightInstPos.transform.position -= LightDirectionPos;
+            NowInstLight.transform.parent = null;
+            lightInstTimer = 0;
+        }
     }
 
     void FixedUpdate()
@@ -89,7 +106,10 @@ public class PlayerMoveScript : MonoBehaviour
                 nowDashTime -= Time.deltaTime;
                 if (nowDashTime <= 0)
                 {
-                    PlayerRB = null;
+                    PlayerRB.constraints = RigidbodyConstraints.None;
+                    PlayerRB.constraints = RigidbodyConstraints.FreezeRotationZ;
+                    PlayerRB.constraints = RigidbodyConstraints.FreezeRotationX;
+
                     DashSW = false;
                 }
             }

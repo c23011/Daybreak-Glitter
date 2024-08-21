@@ -12,8 +12,11 @@ public class MasterControllerScript : MonoBehaviour
     [Header("–Ú•W’n“_Å‘å”")]
     public int maxPoints;
 
+    [Header("“G‚Ì‘”")]
+    public int maxEnemys;
+
     [Header("“G‚ÌŒ‚”j”")]
-    public float destroyEnemys;
+    public int destroyEnemys;
 
     [Header("ƒNƒŠƒAŠÔ")]
     public float clearTime;

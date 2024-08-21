@@ -9,6 +9,8 @@ public class ResultScript_test : MonoBehaviour
     public MasterControllerScript MasterSC;
     public bool ResultSW;
     int clearCount;
+    float clearCheckStartCount;
+    bool CheckSW;
 
     void Start()
     {
@@ -17,28 +19,36 @@ public class ResultScript_test : MonoBehaviour
 
     void Update()
     {
-        Invoke("ClearCheck", 1.0f);
+        if (CheckSW == false)
+        {
+            clearCheckStartCount += Time.deltaTime;
+        }
+
+        if (clearCheckStartCount > 1.0f)
+        {
+            CheckSW = true;
+
+            ClearCheck();
+        }
     }
 
     void ClearJudgement()
     {
-        if (ResultSW == true)
+        for (int i = 0; i < MasterSC.maxPoints; i++)
         {
-            for (int i = 0; i < MasterSC.maxPoints; i++)
+            Debug.Log(MasterSC.ClearSwitches[i]);
+            if (MasterSC.ClearSwitches[i] == true)
             {
-                if (MasterSC.ClearSwitches[i] == true)
-                {
-                    clearCount++;
-                }
+                clearCount++;
+            }
 
-                if (i == MasterSC.maxPoints - 1 && clearCount != MasterSC.maxPoints)
-                {
-                    clearCount = 0;
-                }
-                if (clearCount == MasterSC.maxPoints)
-                {
-                    SceneManager.LoadScene("ResultTest");
-                }
+            if (i == MasterSC.maxPoints - 1 && clearCount != MasterSC.maxPoints)
+            {
+                clearCount = 0;
+            }
+            if (clearCount == MasterSC.maxPoints)
+            {
+                SceneManager.LoadScene("ResultTest");
             }
         }
     }
@@ -46,7 +56,5 @@ public class ResultScript_test : MonoBehaviour
     void ClearCheck()
     {
         ClearJudgement();
-
-        ResultSW = true;
     }
 }
