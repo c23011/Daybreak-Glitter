@@ -9,10 +9,15 @@ public class KnifeSC : MonoBehaviour
     public GameObject Knife;
     public GameObject Player;
 
+    public Rigidbody KnifeRB;
+    public MeshRenderer KnifeMesh;
+
+
     //SE系
 
     //エフェクト系
-   // public GameObject Trail;
+    public GameObject ModoPos;
+    //public GameObject Trail;
 
 
     public AudioClip Attack1;
@@ -22,6 +27,8 @@ public class KnifeSC : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
         Player = GameObject.Find("Player");
+        KnifeRB = GetComponent<Rigidbody>();
+        KnifeMesh = GetComponent<MeshRenderer>();
     }
 
     void Update()
@@ -36,21 +43,28 @@ public class KnifeSC : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Enemy"))
         {
-           // Instantiate(Trail);
-          //  Trail.SetActive(true);
+            GameObject Camera = GameObject.Find("Main Camera");
+            Camera.transform.parent = null;
             Vector3 hitPos = other.contacts[0].point;
             Player.transform.position = new Vector3(hitPos.x, 1, hitPos.z);
-            //Invoke("trailfalse", 1);
 
             //うるさすぎ後で付ける  audioSource.PlayOneShot(Attack1);
             //  audioSource.PlayOneShot(Attack2);
-
-
-            Destroy(this.gameObject);
-        }
+          
+            Invoke("CameraTuiju", 1);
+        }   
     }
-   /* void trailfalse()
+
+    void CameraTuiju()
     {
-        Trail.SetActive(false);
-    }*/
+        GameObject Camera = GameObject.Find("Main Camera");
+        Camera.transform.parent = Player.transform;
+        GameObject ModoPos = GameObject.Find("ModoPos");
+        Camera.transform.position = ModoPos.transform.position;
+        Camera.transform.rotation = ModoPos.transform.rotation;
+    }
+    /* void trailfalse()
+     {
+         Trail.SetActive(false);
+     }*/
 }

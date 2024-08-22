@@ -6,6 +6,7 @@ public class FPSController : MonoBehaviour
 {
     float x, z;
     float speed = 0.3f;
+    [SerializeField] float LimitSpeed; //プレイヤーの速度制限
 
     public GameObject cam;
     Quaternion cameraRot, characterRot;
@@ -32,7 +33,7 @@ public class FPSController : MonoBehaviour
     {
         float xRot = Input.GetAxis("Mouse X");// * Ysensityvity;
 
- 
+
         characterRot *= Quaternion.Euler(0, xRot, 0);
 
         //Updateの中で作成した関数を呼ぶ
@@ -60,26 +61,19 @@ public class FPSController : MonoBehaviour
         {
             PlayerRB.AddForce(-transform.right * PlayerSP);
         }
+        if (PlayerRB.velocity.magnitude > LimitSpeed)
+        {
+            PlayerRB.velocity = new Vector3(PlayerRB.velocity.x / 1.1f, PlayerRB.velocity.y, PlayerRB.velocity.z / 1.1f);
+        }
 
-
-
-
-    }
-
-    void FixedUpdate()
-    {
-        // x = 0;
-        // z = 0;
-
-        // x = Input.GetAxis("Horizontal") * speed;
-        // z = Input.GetAxis("Vertical") * speed;
-
-        //transform.position += new Vector3(x,0,z);
-
-
-        //PlayerRB.AddForce(transform.forward)(cam.transform.forward * z + cam.transform.right * x);
-        // transform.position += cam.transform.forward * z + cam.transform.right * x;
-
+        if (!Input.anyKey)　//プレイヤーが移動をやめたらいい感じに止まるようにする
+        {
+            LimitSpeed = 10;
+        }
+        else
+        {
+            LimitSpeed = 30;
+        }
     }
 
 
