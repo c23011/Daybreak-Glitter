@@ -7,13 +7,15 @@ public class AreaEnemyScript : MonoBehaviour
     int HP;
     int areaCount;
     public AreaTest areaTestSC;
+    public MasterControllerScript MasterSC;
     bool AreaCountSW;
-    public int AreaIn;//0¨–¢N“ü 1¨N“ü 2¨N“üŒvZÏ
+    int AreaIn;//0¨–¢N“ü 1¨N“ü 2¨N“üŒvZÏ
 
     void Start()
     {
         HP = 1;
         areaCount = 1;
+        MasterSC.maxEnemys += 1;
     }
 
     void Update()
@@ -24,6 +26,7 @@ public class AreaEnemyScript : MonoBehaviour
             {
                 areaTestSC.EnemyNum -= 1;
             }
+            MasterSC.destroyEnemys += 1;
             Destroy(gameObject);
         }
 

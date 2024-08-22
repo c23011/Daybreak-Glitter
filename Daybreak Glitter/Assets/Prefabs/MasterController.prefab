@@ -47,5 +47,5 @@ MonoBehaviour:
   ClearSwitches: 00000000000000000000
   maxPoints: 10
   maxEnemys: 0
-  destroyEnemys: 0
+  destroyEnemys: 45
   clearTime: 0

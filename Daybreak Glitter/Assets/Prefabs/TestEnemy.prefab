@@ -423,6 +423,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9609a722656f2104fa64136d16489712, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  areaTestSC: {fileID: 0}
+  MasterSC: {fileID: -9010798700757412002, guid: b0b0fcacdf13305458d3c6e4ba366945, type: 3}
 --- !u!114 &8940140104194079730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -440,5 +442,6 @@ MonoBehaviour:
   enemyMoveSpeed: 3
   attackDistance: 2
   attackEndTime: 1
+  countTimer: 0
   MoveSW: 0
   AttackSW: 0
