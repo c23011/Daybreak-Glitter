@@ -48,7 +48,7 @@ public class ResultScript_test : MonoBehaviour
             }
             if (clearCount == MasterSC.maxPoints)
             {
-                SceneManager.LoadScene("ResultTest");
+                SceneManager.LoadScene("ResultScene");
             }
         }
     }

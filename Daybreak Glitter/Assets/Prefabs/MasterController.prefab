@@ -46,6 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ClearSwitches: 00000000000000000000
   maxPoints: 10
-  maxEnemys: 0
-  destroyEnemys: 45
+  maxEnemys: 160
+  destroyEnemys: 93
   clearTime: 0
